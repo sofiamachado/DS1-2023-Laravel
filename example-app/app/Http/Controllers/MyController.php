@@ -3,55 +3,57 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Comida;
+use App\Models\Casa;
 
 class MyController extends Controller
 {
-    public function geraTela()
-    {
-        return view('tela');
-    }
-
-    public function geraWelcome()
-    {
-        return view('welcome');
-    }
 
     public function getValor()
     {
-        $myModel = new Comida;
-        $comida = $myModel->all();
-        return $comida;
+        $myModel = new Casa;
+        $Casa = $myModel->all();
+        return $Casa;
     }
      public function geraMyHome( Request $request){
-        $valor = $request->all();
-        $valor_created = $this->getValor();
-        
-        return view('myHomeView', ['name' => $valor['email'], 'senha' => $valor['password'], 'selecoes' => $valor_created]);
+        $valor_created = Casa::all();
+       return view('home', ['selecoes' => $valor_created]);
      }
 
-     public function gerasalvaDados( Request $request)
+    public function novosDados()
+    {
+        return view('addDados');
+    }
+
+     public function geraSalvaDados( Request $request)
      {
         $valor = $request->all();
-        $myModel = new Comida;
-        $myModel -> nome = $valor['nome'];
-        $myModel -> pais = $valor['pais'];
-        $myModel -> chefe = $valor['chefe'];
-        $myModel -> qtd = $valor['qtd'];
+        $myModel = new Casa;
+        $myModel -> imobiliaria = $valor['imobiliaria'];
+        $myModel -> endereco = $valor['endereco'];
+        $myModel -> preco = $valor['preco'];
+        $myModel -> status = $valor['status'];
         $myModel-> save();
+        return redirect('/');
    }
 
-    public function mostraDados (){
-        return view('salvaDados');
-     }
-
-    public function deletaDados(Request $request)
+    public function deletaDados ($id)
     {
-        return view('deletaDados');
+        Casa::find($id)->delete();
+        return redirect('/');
     }
     
-
-
+    public function editaCasa ($id) {
+        $casa = Casa::find($id);
+        return view('editaCasa', ['casa' => $casa]);
+    }
+    public function editaDados($id, Request $request)
+    {
+        if ($request->imobiliaria) Casa::find($id)->update(['imobiliaria' => $request->imobiliaria]);
+        if ($request->endereco) Casa::find($id)->update(['endereco' => $request->endereco]);
+        if ($request->preco) Casa::find($id)->update(['preco' => $request->preco]);
+        if ($request->status) Casa::find($id)->update(['status' => $request->status]);
+        return redirect('/');
+    }
 
 }
 

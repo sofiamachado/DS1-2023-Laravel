@@ -6,34 +6,31 @@
 <body>
 
     <div id="login">
-        <h3 class="text-center text-white pt-5">Comidas</h3>
+        <h3 class="text-center text-white pt-5">Casas</h3>
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="{{ url('salvaDados') }}" method="post">
+                        <form id="login-form" class="form" action="{{ url('addDados') }}" method="post">
                         @csrf
                             <h3 class="text-center text-info"></h3>
                             <div class="form-group">
-                                <label for="username" class="text-info">Nome:</label><br>
-                                <input type="text" name="nome" id="nome" class="form-control">
+                                <label for="imobiliaria" class="text-info">Nome da Imobiliária:</label><br>
+                                <input type="text" name="imobiliaria" id="imobiliaria" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label for="pais" class="text-info">País:</label><br>
-                                <input type="text" name="pais" id="pais" class="form-control">
+                                <label for="endereco" class="text-info">Endereço:</label><br>
+                                <input type="text" name="endereco" id="endereco" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label for="chefe" class="text-info">Chefe:</label><br>
-                                <input type="text" name="chefe" id="chefe" class="form-control">
+                                <label for="preco" class="text-info">Preço:</label><br>
+                                <input type="number" name="preco" id="preco" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label for="qtd" class="text-info">Qtd:</label><br>
-                                <input type="number" name="qtd" id="qtd" class="form-control">
+                                <label for="status" class="text-info">Status:</label><br>
+                                <input type="text" name="status" id="status" class="form-control" required>
                             </div>
-                            <div  href="{{url('salvaDados')}}" id="register-link" class="text-right">
-                                <input type="submit" class="text-info"></input>
-                            </div> 
-
+                            <input type="submit" class="text-info"></input> 
                         </form>
                     </div>
                 </div>

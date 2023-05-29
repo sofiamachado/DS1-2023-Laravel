@@ -3,12 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MyController;
 
+Route::get('/', [MyController::class, 'geraMyHome']);
 
-Route::get('/', [MyController::class, 'geraWelcome']);
+Route::get('/addDados', [MyController::class,'novosDados']);
+Route::post('/addDados', [MyController::class, 'geraSalvaDados']);
 
-Route::get('/tela', [MyController::class, 'geraTela']);
-
-Route::post('/home', [MyController::class, 'geraMyHome']);
-
-Route::get('/salvaDados', [MyController::class, 'mostraDados']);
-Route::post('/salvaDados', [MyController::class, 'gerasalvaDados']);
+Route::get('/deletaDados/{id}', [MyController::class, 'deletaDados']);
+Route::get('/editaDados/{id}', [MyController::class, 'editaCasa']);
+Route::post('/editaDados/{id}', [MyController::class, 'editaDados']);
