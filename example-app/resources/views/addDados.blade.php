@@ -12,7 +12,7 @@
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
                         <form id="login-form" class="form" action="{{ url('addDados') }}" method="post">
-                        @csrf
+                            @csrf
                             <h3 class="text-center text-info"></h3>
                             <div class="form-group">
                                 <label for="imobiliaria" class="text-info">Nome da Imobiliária:</label><br>
@@ -28,9 +28,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="status" class="text-info">Status:</label><br>
-                                <input type="text" name="status" id="status" class="form-control" required>
+                                <select name="status" id="status" class="form-control" required>
+                                    <option value="0">Para Alugar</option>
+                                    <option value="1">À Venda</option>
+                                </select>
                             </div>
-                            <input type="submit" class="text-info"></input> 
+                            <input type="submit" class="text-info"></input>
                         </form>
                     </div>
                 </div>

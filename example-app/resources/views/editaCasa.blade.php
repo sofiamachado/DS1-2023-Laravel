@@ -12,27 +12,33 @@
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
                         <form id="login-form" class="form" action="{{ url('editaDados/'.$casa->id) }}" method="post">
-                        @csrf
+                            @csrf
                             <h3 class="text-center text-info"></h3>
                             <div class="form-group">
                                 <label for="imobiliaria" class="text-info">Nome da Imobiliária:</label><br>
-                                <input type="text" name="imobiliaria" id="imobiliaria" class="form-control" placeholder="{{ $casa->Imobiliaria }}" >
+                                <input type="text" name="imobiliaria" id="imobiliaria" class="form-control" placeholder="{{ $casa->imobiliaria }}">
                             </div>
                             <div class="form-group">
                                 <label for="endereco" class="text-info">Endereço:</label><br>
-                                <input type="text" name="endereco" id="endereco" class="form-control" placeholder="{{ $casa->Endereco}}" >
+                                <input type="text" name="endereco" id="endereco" class="form-control" placeholder="{{ $casa->endereco}}">
                             </div>
                             <div class="form-group">
                                 <label for="preco" class="text-info">Preço:</label><br>
-                                <input type="number" name="preco" id="preco" class="form-control" placeholder="{{ $casa->Preco }}" >
+                                <input type="number" name="preco" id="preco" class="form-control" placeholder="{{ $casa->preco }}">
                             </div>
                             <div class="form-group">
                                 <label for="status" class="text-info">Status:</label><br>
-                                <input type="text" name="status" id="status" class="form-control" placeholder="{{ $casa->Status }}" >
+                                <select name="status" id="status" class="form-control">
+                                    <option value="0">Para Alugar</option>
+                                    <option value="1">À Venda</option>
+                                </select>
+                                <script>
+                                    select = document.getElementById('status');
+                                    select.value = "{{ $casa->status }}";
+                                </script>
                             </div>
-                            <div  href="{{url('salvaDados')}}" id="register-link" class="text-right">
-                                <input type="submit" class="text-info"></input>
-                            </div> 
+                            <input type="submit" class="text-info"></input>
+
 
                         </form>
                     </div>

@@ -7,24 +7,21 @@ use App\Models\Casa;
 
 class MyController extends Controller
 {
-
-    public function getValor()
-    {
-        $myModel = new Casa;
-        $Casa = $myModel->all();
-        return $Casa;
+    public function geraMyHome(Request $request){
+        $search = $request->input('search', '');
+        $ordem = $request->input('ordem', 'id');
+        $status = $request->input('status', '');
+        $selecoes = Casa::where('imobiliaria', 'LIKE', "%$search%")->orWhere('endereco', 'LIKE', "%$search%")->orderBy($ordem, 'ASC')->get();
+        if($status != '') $selecoes = $selecoes->where('status', '=', $status);
+        return view('home', compact('selecoes', 'search', 'ordem', 'status'));
     }
-     public function geraMyHome( Request $request){
-        $valor_created = Casa::all();
-       return view('home', ['selecoes' => $valor_created]);
-     }
 
-    public function novosDados()
+    public function novosDados() 
     {
         return view('addDados');
     }
 
-     public function geraSalvaDados( Request $request)
+     public function geraSalvaDados(Request $request)
      {
         $valor = $request->all();
         $myModel = new Casa;
@@ -48,10 +45,11 @@ class MyController extends Controller
     }
     public function editaDados($id, Request $request)
     {
-        if ($request->imobiliaria) Casa::find($id)->update(['imobiliaria' => $request->imobiliaria]);
-        if ($request->endereco) Casa::find($id)->update(['endereco' => $request->endereco]);
-        if ($request->preco) Casa::find($id)->update(['preco' => $request->preco]);
-        if ($request->status) Casa::find($id)->update(['status' => $request->status]);
+        $casa = Casa::find($id);
+        if ($request->imobiliaria) $casa->update(['imobiliaria' => $request->imobiliaria]);
+        if ($request->endereco) $casa->update(['endereco' => $request->endereco]);
+        if ($request->preco) $casa->update(['preco' => $request->preco]);
+        if ($request->status) $casa->update(['status' => $request->status]);
         return redirect('/');
     }
 
