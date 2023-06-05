@@ -24,7 +24,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="preco" class="text-info">Preço:</label><br>
-                                <input type="number" name="preco" id="preco" class="form-control" placeholder="{{ $casa->preco }}">
+                                <input type="number" name="preco" id="preco" class="form-control" max="999999999" placeholder="{{ $casa->preco }}">
                             </div>
                             <div class="form-group">
                                 <label for="status" class="text-info">Status:</label><br>

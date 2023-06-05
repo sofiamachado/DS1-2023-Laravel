@@ -13,7 +13,8 @@ class MyController extends Controller
         $status = $request->input('status', '');
         $selecoes = Casa::where('imobiliaria', 'LIKE', "%$search%")->orWhere('endereco', 'LIKE', "%$search%")->orderBy($ordem, 'ASC')->get();
         if($status != '') $selecoes = $selecoes->where('status', '=', $status);
-        return view('home', compact('selecoes', 'search', 'ordem', 'status'));
+        $maisCara = $selecoes->sortByDesc('preco')->first()->id;
+        return view('home', compact('selecoes', 'search', 'ordem', 'status', 'maisCara'));
     }
 
     public function novosDados() 

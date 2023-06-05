@@ -22,11 +22,11 @@
       </form>
     </div>
     @forelse ($selecoes as $sel)
-    <div>
+    <div class="casa">
       <hr class="solid">
       <li> Imobiliaria: {{ $sel->imobiliaria }}</li>
       <li> Endereço: {{ $sel->endereco }}</li>
-      <li> Preço: R${{ $sel->preco }},00 </li>
+      <li> Preço: R${{ $sel->preco }},00 @if ($sel->id === $maisCara) <span class="text-success"><b>💸 Mais Cara 💸</b></span> @endif</li>
       <li> Status: {{ $sel->status ? 'À Venda' : 'Para Alugar' }} </li>
       <div class="text-right">
         <a href="{{url('editaDados/'.$sel['id'])}}" class=" text-white bg-primary p-2 mr-1"> Edita </a>
@@ -38,5 +38,4 @@
   </div>
   @endforelse
 </body>
-
 </html>

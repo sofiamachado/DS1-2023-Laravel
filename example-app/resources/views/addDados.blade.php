@@ -23,7 +23,7 @@
                                 <input type="text" name="endereco" id="endereco" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label for="preco" class="text-info">Preço:</label><br>
+                                <label for="preco" class="text-info" max="999999999">Preço:</label><br>
                                 <input type="number" name="preco" id="preco" class="form-control" required>
                             </div>
                             <div class="form-group">
